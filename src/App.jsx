@@ -1,11 +1,27 @@
-import Board from './components/Board'
+import { useState } from "react";
+
+import Header from "./components/Header";
+import Board from "./components/Board";
+
+
+import "./index.css";
 
 function App() {
-  return (
-   <div className="App">
-      <Board/>
-   </div> 
-  )
+
+  const [player, setPlayer] = useState('X')
+
+  function changePlayer(){
+    setPlayer(
+      prevPlayer => prevPlayer === 'X' ? 'O' :'X'
+    )
+  }
+
+    return (
+        <div className="App">
+            <Header player={player}/>
+            <Board function={changePlayer}/>
+        </div>
+    );
 }
 
-export default App
+export default App;
