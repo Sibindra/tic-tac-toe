@@ -30,7 +30,12 @@
 
 .board-item {
     border: 2px solid white;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    font-size: 2rem;
 }
 
 .Header{
