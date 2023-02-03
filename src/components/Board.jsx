@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Board(props) {
     return (
         <>
             <div className="Board">
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
-                <div className="board-item" onClick={props.function}>{props.move}</div>
+                {props.element.map((element, index) => (
+                    <div
+                        className="board-item"
+                        key={index}
+                        onClick={props.onClickFunction}
+                    >
+                        {element}
+                    </div>
+                ))}
             </div>
         </>
     );

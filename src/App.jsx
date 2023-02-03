@@ -6,6 +6,9 @@ import Board from "./components/Board";
 import "./index.css";
 
 function App() {
+    const [boxes, setBoxes] = useState(Array(9).fill(null));
+
+    // console.log(boxes)
     const [player, setPlayer] = useState("X");
 
     function changePlayer() {
@@ -15,7 +18,8 @@ function App() {
     return (
         <div className="App">
             <Header player={player} />
-            <Board function={changePlayer} move={player} />
+
+            <Board onClickFunction={changePlayer} element={boxes} />
         </div>
     );
 }
