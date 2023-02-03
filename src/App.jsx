@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Board from "./components/Board";
 
 import "./index.css";
+import Footer from "./components/Footer";
 
 function App() {
     const [boxes, setBoxes] = useState(Array(9).fill(null));
@@ -19,9 +20,6 @@ function App() {
         const newBoxes = [...boxes];
         newBoxes[index] = player;
         setBoxes(newBoxes);
-
-        // console.log(boxes)
-        console.log("index = " + index);
     }
 
     return (
@@ -32,6 +30,8 @@ function App() {
                 onClickFunction={handleClick}
                 elementArr={boxes}
             />
+
+            <Footer/>
         </div>
     );
 }

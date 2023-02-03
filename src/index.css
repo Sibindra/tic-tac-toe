@@ -21,8 +21,8 @@
     border: 2px solid white;
     border-radius: 4px;
     display: grid;
-    grid-template-rows: repeat(3,1fr);
-    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     height: 40vmax;
     width: 40vmax;
@@ -39,11 +39,65 @@
     cursor: pointer;
 }
 
-.Header{
+.Header {
     border: 1px solid red;
     width: 40vmax;
     font-size: 2rem;
     margin: 1vmax;
 
     color: white;
+}
+
+.Footer {
+    border: 1px solid red;
+    width: 40vmax;
+    font-size: 2rem;
+    margin: 1vmax;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    padding: 2vmax;
+}
+
+button {
+    font-size: 18px;
+    color:white;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+}
+
+button:focus,
+button:hover {
+    color: #fff;
+}
+
+button:focus:after,
+button:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+button:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
 }
