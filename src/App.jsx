@@ -7,19 +7,31 @@ import "./index.css";
 
 function App() {
     const [boxes, setBoxes] = useState(Array(9).fill(null));
-
-    // console.log(boxes)
     const [player, setPlayer] = useState("X");
 
-    function changePlayer() {
+    let index = 0;
+    function handleClick(Clickedindex) {
+        index = Clickedindex;
+
+        // change player alternatiely
         setPlayer((prevPlayer) => (prevPlayer === "X" ? "O" : "X"));
+
+        const newBoxes = [...boxes];
+        newBoxes[index] = player;
+        setBoxes(newBoxes);
+
+        // console.log(boxes)
+        console.log("index = " + index);
     }
 
     return (
         <div className="App">
             <Header player={player} />
 
-            <Board onClickFunction={changePlayer} element={boxes} />
+            <Board
+                onClickFunction={handleClick}
+                elementArr={boxes}
+            />
         </div>
     );
 }

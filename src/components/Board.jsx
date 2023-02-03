@@ -4,11 +4,11 @@ export default function Board(props) {
     return (
         <>
             <div className="Board">
-                {props.element.map((element, index) => (
+                {props.elementArr.map((element, index) => (
                     <div
                         className="board-item"
                         key={index}
-                        onClick={props.onClickFunction}
+                        onClick={()=>props.onClickFunction(index)}
                     >
                         {element}
                     </div>
