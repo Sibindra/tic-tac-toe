@@ -62,7 +62,7 @@
     padding: 2vmax;
 }
 
-button {
+.reset-btn {
     font-size: 18px;
     color:white;
     font-family: inherit;
@@ -77,18 +77,18 @@ button {
     transition-property: color;
 }
 
-button:focus,
-button:hover {
+.reset-btn:focus,
+.reset-btn:hover {
     color: #fff;
 }
 
-button:focus:after,
-button:hover:after {
+.reset-btn:focus:after,
+.reset-btn:hover:after {
     width: 100%;
     left: 0%;
 }
 
-button:after {
+.reset-btn:after {
     content: "";
     pointer-events: none;
     bottom: -2px;

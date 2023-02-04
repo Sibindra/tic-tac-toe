@@ -1,9 +1,8 @@
 import { useState } from "react";
+import "./index.css";
 
 import Header from "./components/Header";
 import Board from "./components/Board";
-
-import "./index.css";
 import Footer from "./components/Footer";
 
 function App() {
@@ -13,25 +12,21 @@ function App() {
     let index = 0;
     function handleClick(Clickedindex) {
         index = Clickedindex;
-
-        // change player alternatiely
         setPlayer((prevPlayer) => (prevPlayer === "X" ? "O" : "X"));
-
         const newBoxes = [...boxes];
         newBoxes[index] = player;
         setBoxes(newBoxes);
     }
 
+    function resetBoard() {
+        setBoxes(new Array(9).fill(null));
+    }
+
     return (
         <div className="App">
             <Header player={player} />
-
-            <Board
-                onClickFunction={handleClick}
-                elementArr={boxes}
-            />
-
-            <Footer/>
+            <Board onClickFunction={handleClick} elementArr={boxes} />
+            <Footer onClickFunction={resetBoard} />
         </div>
     );
 }
