@@ -24,8 +24,7 @@ function App() {
         setLoading(true);
         const timeoutId = setTimeout(() => {
             setLoading(false);
-            // FIXME: 3000
-        }, 1);
+        }, 3000);
         return () => clearTimeout(timeoutId);
     }, []);
 
