@@ -75,7 +75,7 @@ function App() {
                 setBoxes(newBoxes);
                 gameEngine(newBoxes);
             }
-        },1000);
+        },500);
     };
     useEffect(() => {
         ai_move();
