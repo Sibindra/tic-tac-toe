@@ -10,7 +10,13 @@ export default function Header(props) {
 
             <span className="winStatus">
                 Winner : &emsp;
-                <span className="Winner">{props.winner}</span>
+                <span className="Winner">
+                    {props.winner === "X"
+                        ? "AI wins"
+                        : props.winner === "O"
+                        ? "Human wins"
+                        : props.winner}
+                </span>
             </span>
         </div>
     );

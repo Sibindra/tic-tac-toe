@@ -13,19 +13,9 @@ function App() {
     const [player, setPlayer] = useState("X");
     const [winner, setWinner] = useState(null);
 
+    // use effect for boxes
     useEffect(() => {
-        resetBoard();
-    }, [winner]);
-
-    useEffect(() => {
-        let bestMove = minimax(newBoxes, "X");
-        let bestIndex = bestMove.index;
-        if (player == "X") {
-            const newBoxes = [...boxes];
-            newBoxes[bestIndex] = player;
-            setBoxes(newBoxes);
-            gameEngine(newBoxes);
-        }
+        setPlayer("O");
     }, [boxes]);
 
     // loader hooks
@@ -69,26 +59,57 @@ function App() {
                     }
                 });
                 if (filledBoxes === 9) {
-                    setWinner("Draw");
+                    setWinner("Tie");
                 }
             }
         });
     }
 
+    const ai_move = () => {
+        setTimeout(() => {
+            if (player === "X") {
+                let bestMove = minimax(boxes, "X");
+                let bestIndex = bestMove.index;
+
+                const newBoxes = [...boxes];
+                newBoxes[bestIndex] = "X";
+                setBoxes(newBoxes);
+                gameEngine(newBoxes);
+            }
+        },1000);
+    };
+    useEffect(() => {
+        ai_move();
+
+        // This empty dependency array ensures that this useEffect runs only once on mount.
+    }, [player]);
+
     // function to change player and update the array value
     let index = 0;
     function handleClick(clickedIndex) {
-        setPlayer((prevPlayer) => (prevPlayer === "X" ? "O" : "X"));
-        index = clickedIndex;
-        const newBoxes = [...boxes];
-        newBoxes[index] = player;
-        setBoxes(newBoxes);
-        gameEngine(newBoxes);
+        if (boxes[clickedIndex] !== null) {
+            return;
+        }
+
+        if (!winner) {
+            setPlayer((prevPlayer) => (prevPlayer === "X" ? "O" : "X"));
+
+            if (player !== "X") {
+                index = clickedIndex;
+                const newBoxes = [...boxes];
+                newBoxes[index] = player;
+                setBoxes(newBoxes);
+                gameEngine(newBoxes);
+            }
+        }
     }
 
     // function to reset board
     function resetBoard() {
         setBoxes(new Array(9).fill(null));
+        setWinner(null);
+        setPlayer("O");
+        setTimeout(ai_move(), 1000);
     }
 
     return (
