@@ -42,10 +42,14 @@
 .Header {
     border: 1px solid red;
     width: 40vmax;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 1vmax;
+    padding: 1vmaxs;
 
     color: white;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 .Footer {
@@ -59,7 +63,7 @@
     align-items: center;
 
     color: white;
-    padding: 2vmax;
+    /* padding: 2vmax; */
 }
 
 .reset-btn {
