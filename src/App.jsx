@@ -1,9 +1,11 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import "./index.css";
 
 import Header from "./components/Header";
 import Board from "./components/Board";
 import Footer from "./components/Footer";
+
+import BarLoader from "react-spinners/BarLoader";
 
 function App() {
     const [boxes, setBoxes] = useState(Array(9).fill(null));
@@ -11,8 +13,18 @@ function App() {
     const [winner, setWinner] = useState(null);
 
     useEffect(() => {
-        resetBoard()
+        resetBoard();
     }, [winner]);
+
+    // loader hooks
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        const timeoutId = setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+        return () => clearTimeout(timeoutId);
+    },[]);
 
     // game logic
     function gameEngine(boxesArray) {
@@ -39,7 +51,6 @@ function App() {
                 // console.log("winner = " + winner);
             }
         });
-
     }
 
     // function to change player and update the array value
@@ -61,9 +72,22 @@ function App() {
 
     return (
         <div className="App">
-            <Header player={player} winner={winner} />
-            <Board onClickFunction={handleClick} elementArr={boxes} />
-            <Footer onClickFunction={resetBoard} />
+            {/* loading */}
+            {loading ? (
+                <BarLoader
+                    color={"#FFFFFF"}
+                    loading={loading}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            ) : (
+                <div className="App">
+                    <Header player={player} winner={winner} />
+                    <Board onClickFunction={handleClick} elementArr={boxes} />
+                    <Footer onClickFunction={resetBoard} />
+                </div>
+            )}
         </div>
     );
 }
