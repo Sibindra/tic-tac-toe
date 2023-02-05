@@ -7,7 +7,7 @@
 
 .App {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
 
     display: flex;
     flex-direction: column;
@@ -42,9 +42,9 @@
 .Header {
     /* border: 1px solid red; */
     width: 40vmax;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin: 1vmax;
-    padding: 1vmaxs;
+    padding: 1vmax;
 
     color: white;
 
@@ -104,4 +104,15 @@
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 400ms;
     transition-property: width, left;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .Header{
+          font-size: 1rem;  
+    }
+
+    .reset-btn{
+        font-size: 1rem;
+    }
 }
