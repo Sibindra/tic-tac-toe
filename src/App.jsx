@@ -24,7 +24,7 @@ function App() {
             setLoading(false);
         }, 3000);
         return () => clearTimeout(timeoutId);
-    },[]);
+    }, []);
 
     // game logic
     function gameEngine(boxesArray) {
@@ -48,7 +48,16 @@ function App() {
                 boxesArray[a] === boxesArray[c]
             ) {
                 setWinner(boxesArray[a]);
-                // console.log("winner = " + winner);
+            } else if (!winner) {
+                let filledBoxes = 0;
+                boxesArray.forEach((box) => {
+                    if (box) {
+                        filledBoxes++;
+                    }
+                });
+                if (filledBoxes === 9) {
+                    setWinner("Draw");
+                }
             }
         });
     }
