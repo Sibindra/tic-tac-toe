@@ -6,6 +6,7 @@ import Board from "./components/Board";
 import Footer from "./components/Footer";
 
 import BarLoader from "react-spinners/BarLoader";
+import minimax from "./components/minimax/minimax";
 
 function App() {
     const [boxes, setBoxes] = useState(Array(9).fill(null));
@@ -16,13 +17,25 @@ function App() {
         resetBoard();
     }, [winner]);
 
+    useEffect(() => {
+        let bestMove = minimax(newBoxes, "X");
+        let bestIndex = bestMove.index;
+        if (player == "X") {
+            const newBoxes = [...boxes];
+            newBoxes[bestIndex] = player;
+            setBoxes(newBoxes);
+            gameEngine(newBoxes);
+        }
+    }, [boxes]);
+
     // loader hooks
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         setLoading(true);
         const timeoutId = setTimeout(() => {
             setLoading(false);
-        }, 3000);
+            // FIXME: 3000
+        }, 1);
         return () => clearTimeout(timeoutId);
     }, []);
 
@@ -64,19 +77,18 @@ function App() {
 
     // function to change player and update the array value
     let index = 0;
-    function handleClick(Clickedindex) {
+    function handleClick(clickedIndex) {
         setPlayer((prevPlayer) => (prevPlayer === "X" ? "O" : "X"));
-
-        index = Clickedindex;
+        index = clickedIndex;
         const newBoxes = [...boxes];
         newBoxes[index] = player;
-        setBoxes(newBoxes, gameEngine(newBoxes));
+        setBoxes(newBoxes);
+        gameEngine(newBoxes);
     }
 
     // function to reset board
     function resetBoard() {
         setBoxes(new Array(9).fill(null));
-        // setWinner(null);
     }
 
     return (
